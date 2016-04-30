@@ -1,0 +1,65 @@
+	<div class="container">
+	<h2>Edit your cat info here</h2><br/>
+
+		<div class="row">
+			<div class="col-md-5">
+				<%= form_for :cats_info, url: cats_info_path(@cats_info), method: :patch do |f| %>
+
+					<% if @cats_info.errors.any? %>
+					<div id="error">
+						<div>
+							<%= pluralize(@cats_info.errors.count, "error") %> found, please adjust incorrect field contents
+						</div>
+						<ul>
+							<% @cats_info.errors.full_messages.each do |msg|%>
+							<li>
+								<%= msg %>
+							</li>
+							<%end%>
+						</ul>
+					</div>
+				<% end %>
+
+					<p>
+						<%= f.label :name%><br>
+						<%= f.text_field :name , class: 'form-control'%>
+					</p>
+
+					<p>
+						<%= f.label :color %><br>
+						<%= f.text_field :color, class: 'form-control' %>
+					</p>
+
+					<p>
+						<%= f.label :picture %><br>
+						<%= f.file_field :picture , class: 'form-control'%>
+					</p>
+
+					<p>
+						<%= f.label :race %><br>
+						<%= f.select(:race, options_for_select([['Abyssinian', 'Abyssinian'], ['Aegean', 'Aegean'], ['American Bobtail', 'American Bobtail'], ['American Shorthair', 'American Shorthair'], ['American Wirehair', 'American Wirehair'], ['Arabian Mau', 'Arabian Mau'], ['Australian Mist', 'Australian Mist'], ['Asian', 'Asian'], ['Asian Semi-longhair', 'Asian Semi-longhair'], ['Brazilian Shorthair', 'Brazilian Shorthair'], ['Devon Rex', 'Devon Rex'], ['Dragon Li', 'Dragon Li'], ['Exotic Shorthair', 'Exotic Shorthair'], ['German Rex', 'German Rex']], selected: :race ),{}, { :class => 'form-control' } ) %>
+
+					</p>
+
+					<p>
+						<%= f.label :gender %><br>
+						<%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], selected: :gender ),{}, { :class => 'form-control' } ) %>
+					</p>
+
+					
+					<p>
+						<%= f.label :details %><br>
+						<%= f.text_area :details , class: 'form-control'%>
+					</p>
+
+					<p>
+						<%= f.submit  :class => '_custm_btn', :value => "Update" %>
+					</p>
+				<% end %>
+				<br/>
+				<div>
+					<%= link_to 'Click to see all cats', cats_infos_path %>
+				</div>
+				</div>
+			</div>
+		</div>
